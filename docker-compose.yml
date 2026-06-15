@@ -1,0 +1,37 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: spendly-db
+
+    environment:
+      MYSQL_DATABASE: firefly
+      MYSQL_USER: firefly
+      MYSQL_PASSWORD: fireflypass
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+
+    restart: unless-stopped
+
+  spendly:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: spendly
+
+    depends_on:
+      - db
+
+    environment:
+      APP_KEY: base64:J7QzT4ZJ7i+7P6Y2nX8nX8h7y4w3R6Yv8V4h2m0lQ9k=
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: firefly
+      DB_USERNAME: firefly
+      DB_PASSWORD: fireflypass
+      TZ: Asia/Kolkata
+
+    ports:
+      - "8081:8080"
+
+    restart: unless-stopped
