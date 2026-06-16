@@ -69,7 +69,7 @@
 <div class="login-box">
     <div class="login-logo">
         <img src="images/logo-session.png" width="68" height="100" alt="Firefly III Logo" title="Firefly III" /><br>
-        <a href='{{ route('index')  }}'><b>Firefly</b> III</a> </div>
+        <a href='{{ route('index')  }}'><b>Spendly</b> III</a> </div>
     @yield('content')
 
 
